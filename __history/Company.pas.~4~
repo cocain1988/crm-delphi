@@ -1,0 +1,60 @@
+unit Company;
+
+interface
+
+uses SysUtils, System, Windows, base, ComCtrls;
+
+var
+name:string;
+n:TTreeNode;
+
+
+implementation
+
+procedure GetListCompany;
+begin
+base.DataModule1.mySQLDatabase1.Connect;
+base.DataModule1.mySQLQuery1.SQL.Clear;
+base.DataModule1.mySQLQuery1.SQL.Add('SELECT * FROM companys');
+base.DataModule1.mySQLQuery1.Open;
+base.DataModule1.mySQLQuery1.Active;
+end;
+
+procedure AddNewComapany(name:string; addres:string; inn:integer; kpp:integer; ogrn:integer);
+begin
+base.DataModule1.mySQLDatabase1.Connect;
+base.DataModule1.mySQLQuery1.SQL.Clear;
+base.DataModule1.mySQLQuery1.SQL.Add('INSERT INTO companys(name, address, inn, kpp, ogrn) VALUES('+name+','+addres+','+inn+','+kpp+','+ogrn+')');
+base.DataModule1.mySQLQuery1.Open;
+base.DataModule1.mySQLQuery1.Active;
+end;
+
+procedure DeleteCompany(id:integer);
+begin
+base.DataModule1.mySQLDatabase1.Connect;
+base.DataModule1.mySQLQuery1.SQL.Clear;
+base.DataModule1.mySQLQuery1.SQL.Add('DELETE FROM company WHERE id='+id+'');
+base.DataModule1.mySQLQuery1.Open;
+base.DataModule1.mySQLQuery1.Active;
+end;
+
+procedure GetListOrdersCompany(cid:integer);
+begin
+base.DataModule1.mySQLDatabase1.Connect;
+base.DataModule1.mySQLQuery1.SQL.Clear;
+base.DataModule1.mySQLQuery1.SQL.Add('SELECT * FROM orders2company WHERE company_id = '+cid+'');
+base.DataModule1.mySQLQuery1.Open;
+base.DataModule1.mySQLQuery1.Active;
+end;
+
+procedure GetListAccountsCompany(cid:integer);
+begin
+base.DataModule1.mySQLDatabase1.Connect;
+base.DataModule1.mySQLQuery1.SQL.Clear;
+base.DataModule1.mySQLQuery1.SQL.Add('SELECT * FROM accounts where company_id='+cid+'');
+base.DataModule1.mySQLQuery1.Open;
+base.DataModule1.mySQLQuery1.Active;
+end;
+
+
+end.

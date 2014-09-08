@@ -1,0 +1,32 @@
+object accounts_form: Taccounts_form
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = #1047#1072#1082#1072#1079#1095#1080#1082#1080
+  ClientHeight = 310
+  ClientWidth = 645
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 0
+    Width = 645
+    Height = 310
+    Align = alClient
+    DataSource = DataModule1.DS_ListUser
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+end

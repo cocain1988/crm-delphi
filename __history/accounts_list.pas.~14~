@@ -1,0 +1,41 @@
+unit accounts_list;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, base, accounts, Menus;
+
+type
+  Taccounts_form = class(TForm)
+    DBGrid1: TDBGrid;
+    PopupMenu1: TPopupMenu;
+    PMEdit: TMenuItem;
+    PMNewUser: TMenuItem;
+    PMDelete: TMenuItem;
+
+
+
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  accounts_form: Taccounts_form;
+  ac: account;
+
+implementation
+
+{$R *.dfm}
+
+
+
+
+
+
+
+
+end.

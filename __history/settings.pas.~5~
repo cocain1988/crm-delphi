@@ -1,0 +1,47 @@
+unit settings;
+
+interface
+
+uses SysUtils, System, windows, messages, Inifiles;
+
+implementation
+
+var
+host:string;
+user:string;
+pass:string;
+port:string;
+
+const
+namefile = 'config';
+
+function ReadIniFile(name:string);
+var
+f:TIniFile;
+begin
+  host:=f.ReadString('db','host');
+  user:=f.ReadString('db','user');
+  pass:=f.ReadString('db','pass');
+  port:=f.ReadString('db','port');
+end;
+
+function CreateIniFile(name:string);
+var
+f:TIniFile;
+begin
+  if FileExists('config.ini') then
+    begin
+      ReadIniFile(namefile);
+    end
+  else
+    begin
+      f.Create(namefile);
+      f.WriteString('db','host','localhost');
+      f.WriteString('db','user','root');
+      f.WriteString('db','pass','admin');
+      f.WriteString('db','port','3306');
+    end;
+end;
+
+
+end.

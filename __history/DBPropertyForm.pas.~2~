@@ -1,0 +1,24 @@
+unit DBPropertyForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TFormDBProperty = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormDBProperty: TFormDBProperty;
+
+implementation
+
+{$R *.dfm}
+
+end.

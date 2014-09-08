@@ -1,0 +1,56 @@
+unit userform;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, base, StdCtrls, accounts, ComCtrls;
+
+type
+  TForm2 = class(TForm)
+    OkButton: TButton;
+    CancelButton: TButton;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    GroupBox1: TGroupBox;
+    RadioButton3: TRadioButton;
+    GroupBox2: TGroupBox;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    DateTimePicker1: TDateTimePicker;
+    Label7: TLabel;
+    procedure OkButtonClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+  ac: account;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.OkButtonClick(Sender: TObject);
+begin
+    ac.updateinfouser();
+end;
+
+end.

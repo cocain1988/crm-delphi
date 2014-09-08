@@ -1,0 +1,22 @@
+unit OrdersFrmLst;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, ToolWin, ComCtrls;
+
+type
+  TOrdersFrm = class(TFrame)
+    ToolBar1: TToolBar;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,46 @@
+unit accounts_list;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, base, accounts;
+
+type
+  Taccounts_form = class(TForm)
+    DBGrid1: TDBGrid;
+    procedure FormActivate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+
+
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  accounts_form: Taccounts_form;
+  ac: account;
+
+implementation
+
+{$R *.dfm}
+
+
+
+
+
+
+procedure Taccounts_form.FormActivate(Sender: TObject);
+begin
+ac.GetUserList;
+end;
+
+procedure Taccounts_form.FormShow(Sender: TObject);
+begin
+    ac.GetUserList;
+end;
+
+end.

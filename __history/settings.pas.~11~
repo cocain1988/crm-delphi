@@ -1,0 +1,73 @@
+unit settings;
+
+interface
+
+uses SysUtils, windows, messages, Inifiles;
+
+implementation
+
+var
+host:string;
+user:string;
+pass:string;
+port:string;
+database:string;
+
+const
+namefile = 'config.ini';
+
+procedure ReadIniFile(name:string);
+var
+f:TIniFile;
+begin
+  host:=f.ReadString('db','host','localhost');
+  user:=f.ReadString('db','user','root');
+  pass:=f.ReadString('db','pass','admin');
+  port:=f.ReadString('db','port','3306');
+  database:=f.ReadString('db','database','shop');
+end;
+
+procedure CreateIniFile(name:string);
+var
+f:TIniFile;
+begin
+  if FileExists(namefile) then
+    begin
+      ReadIniFile(namefile);
+    end
+  else
+    begin
+      f.Create(namefile);
+      f.WriteString('db','host','localhost');
+      f.WriteString('db','user','root');
+      f.WriteString('db','pass','admin');
+      f.WriteString('db','port','3306');
+      f.WriteString('db','database','shop');
+    end;
+end;
+
+procedure ExistFile;
+begin
+  if FileExists(namefile) then
+    ReadIniFile(namefile)
+  else
+    CreateIniFile(namefile);
+end;
+
+procedure WriteIniFile(host:string;user:string;pass:string;port:string;database:string);
+var
+f:TIniFile;
+begin
+  if FileExists(namefile) then
+    begin
+      f.WriteString('db','host',host);
+      f.WriteString('db','user',user);
+      f.WriteString('db','pass',pass);
+      f.WriteString('db','port',port);
+      f.WriteString('db','database',database);
+    end
+    else
+      CreateIniFile(namefile);
+end;
+
+end.

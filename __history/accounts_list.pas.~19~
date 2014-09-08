@@ -1,0 +1,65 @@
+unit accounts_list;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, base, accounts, Menus, userform;
+
+type
+  Taccounts_form = class(TForm)
+    DBGrid1: TDBGrid;
+    PopupMenu1: TPopupMenu;
+    PMEdit: TMenuItem;
+    PMNewUser: TMenuItem;
+    PMDelete: TMenuItem;
+    procedure DBGrid1DblClick(Sender: TObject);
+
+
+
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  accounts_form: Taccounts_form;
+  ac: account;
+
+
+implementation
+
+{$R *.dfm}
+
+
+
+
+
+
+
+
+procedure Taccounts_form.DBGrid1DblClick(Sender: TObject);
+var
+  s:integer;
+begin
+  s:=DBgrid1.DataSource.DataSet.FieldByName('id').AsInteger;
+  ac.GetUserForm(s);
+    formuser := Tformuser.Create(self);
+  try
+    formuser.ShowModal;
+
+    userform.FormUser.EName.Text:= base.DataModule1.DSUserForm.DataSet.FieldByName('name').AsString;
+    userform.FormUser.EF_name.Text:= base.DataModule1.DSUserForm.DataSet.FieldByName('f_name').AsString;
+    userform.FormUser.EFamily.Text:= base.DataModule1.DSUserForm.DataSet.FieldByName('family').AsString;
+    userform.FormUser.ELogin.Text:= base.DataModule1.DSUserForm.DataSet.FieldByName('login').AsString;
+    userform.FormUser.Memo1.Text:= base.DataModule1.DSUserForm.DataSet.FieldByName('address').AsString;
+    userform.FormUser.EEmail.Text:= base.DataModule1.DSUserForm.DataSet.FieldByName('email').AsString;
+    userform.FormUser.DateTimePicker1.Date:= base.DataModule1.DSUserForm.DataSet.FieldByName('register_date').AsDateTime;
+  finally
+    formuser.Free;
+  end;
+end;
+
+end.

@@ -1,0 +1,89 @@
+unit accounts;
+
+interface
+
+uses SysUtils, base, Messages, Variants, Windows, Dialogs, userform;
+
+type account = class
+    userid : integer;
+    name : string;
+    f_name : string;
+    family : string;
+    login : string;
+    md_password: char;
+    address : string;
+    email :string;
+    regdate : TDateTime;
+    cart_id :integer;
+    wallet_id : integer;
+    procedure RegUser(login:string; pass:char; email:string);
+    procedure updateinfouser(userid:integer; name:string; f_name:string; family:string; address:string; email:string);
+    procedure deluser(userid:integer);
+    procedure GetUserList;
+    procedure GetUserForm(userid:integer);
+
+end;
+
+implementation
+
+procedure account.RegUser(login: string; pass: Char; email: string);
+begin
+  base.DataModule1.mySQLDatabase1.Connect;
+  base.DataModule1.mySQLQuery1.SQL.Clear;
+  base.DataModule1.mySQLQuery1.SQL.Add('CALL create_user('+login+','+pass+', '+email+')');
+  base.DataModule1.mySQLQuery1.Open;
+end;
+
+procedure account.updateinfouser(userid: Integer; name: string; f_name: string; family: string; address: string; email: string);
+begin
+    base.DataModule1.mySQLDatabase1.connect;
+    base.DataModule1.mySQLQuery1.SQL.Clear;
+    base.DataModule1.mySQLQuery1.SQL.Add('update accounts set family = '+family+', name = '+name+', f_name = '+f_name+', address = '+address+', email = '+email+' where id ='+IntToStr(userid)+'');
+    base.DataModule1.mySQLQuery1.Open;
+end;
+
+procedure account.deluser(userid: integer);
+begin
+    base.DataModule1.mySQLDatabase1.Connect;
+    base.DataModule1.mySQLQuery1.SQL.Clear;
+    base.DataModule1.mySQLQuery1.SQL.Add('CALL delete_user('+IntToStr(userid)+')');
+    base.DataModule1.mySQLQuery1.Open;
+end;
+
+procedure account.GetUserList;
+begin
+  base.DataModule1.mySQLDatabase1.Connect;
+  base.DataModule1.mySQLQuery1.SQL.Clear;
+  base.DataModule1.mySQLQuery1.SQL.Add('SELECT * FROM accounts');
+  base.DataModule1.mySQLQuery1.Active;
+  base.DataModule1.mySQLQuery1.Open;
+end;
+
+procedure account.GetUserForm(userid: integer);
+var
+name, f_name, family, login, email, address : string;
+regdate: TDateTime;
+begin
+  base.DataModule1.mySQLQuery1.SQL.Clear;
+  base.DataModule1.mySQLQuery1.SQL.Add('SELECT * FROM accounts where id = '+IntToStr(userid)+'');
+  base.DataModule1.mySQLQuery1.Active;
+  base.DataModule1.mySQLQuery1.Open;
+
+  userform.Formuser.Create(self);
+  try
+    userform.Formuser.ShowModal;
+
+    userform.FormUser.EName:= base.DataModule1.DSUserForm.DataSet.FieldByName('name').AsString;
+    userform.FormUser.EF_name:= base.DataModule1.DSUserForm.DataSet.FieldByName('f_name').AsString;
+    userform.FormUser.EFamily:= base.DataModule1.DSUserForm.DataSet.FieldByName('family').AsString;
+    userform.FormUser.ELogin:= base.DataModule1.DSUserForm.DataSet.FieldByName('login').AsString;
+    userform.FormUser.Memo1:= base.DataModule1.DSUserForm.DataSet.FieldByName('address').AsString;
+    userform.FormUser.EEmail:= base.DataModule1.DSUserForm.DataSet.FieldByName('email').AsString;
+    userform.FormUser.DateTimePicker1:= base.DataModule1.DSUserForm.DataSet.FieldByName('register_date').AsDateTime;
+
+  finally
+    userform.Formuser.Free;
+  end;
+end;
+
+end.

@@ -1,0 +1,38 @@
+unit products;
+
+interface
+
+uses SysUtils, Windows, base;
+
+implementation
+
+type product = class
+  name:string;
+  code:integer;
+  measure:double;
+  weight:double;
+  price:double;
+  department:string;
+  vendor:string;
+  procedure add;
+  procedure delete;
+  procedure update;
+end;
+
+
+procedure product.add;
+begin
+  //klslfksdklfs
+end;
+
+procedure product.delete;
+begin
+  //sdsdsdsds
+end;
+
+procedure product.update;
+begin
+  //dssdsdsdsdsd
+end;
+
+end.

@@ -1,0 +1,26 @@
+unit WalletForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, base, Menus, Grids, DBGrids;
+
+type
+  TForm2 = class(TForm)
+    DBGrid1: TDBGrid;
+    PopupMenu1: TPopupMenu;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+end.
